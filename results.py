@@ -6,7 +6,6 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 import nltk
-nltk.data.path.append('nltk_data')
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 
