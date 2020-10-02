@@ -79,11 +79,10 @@
 </head>
 
 <body>
-<div class="main" align="center">
-	<span class="heading">Sentiment Analysis</span>
-  <br><br><br>
-    <form id="sentimentForm">
-    	<input type="text" name="inp" id="inp" placeholder="Enter text to analyse" required="required" /><br><br>
+ <div class="main" align="center">
+	<h1 class="heading">Sentiment Analysis</h1>
+    <form action="{{ url_for('predict')}}" method="post">
+    	<input type="text" name="input" placeholder="Enter text to analyse" required="required" /><br><br>
       <input type="submit" value="Analyse" id="sub">
     </form>
   <br>
@@ -99,30 +98,17 @@
       <td><progress min=0 max=100 value=100 id="negbar" class="neg"></progress></td>
     </tr>
   </table>
-</div>
-<div id="response"></div>
-<script>
-  $("#sentimentForm").submit(function(event) {
-      event.preventDefault();
+ </div>
+
+<script type="text/javascript">
+    var val = {{prediction_text}};
+    document.getElementById('posbar').value = val*100;
+    document.getElementById('negbar').value = (1-val)*100;
+    function dis(){
       document.getElementById("sub").value = 'Analysing...';
       document.getElementById("sub").disabled = true;
-      $.ajax({
-            type: "post",
-            url: "res.php",
-            data: { inp : $('#inp').val()},
-            contentType: "application/x-www-form-urlencoded",
-            success: function(responseData, textStatus, jqXHR) {
-              alert(responseData);
-              document.getElementById('posbar').value = responseData*100;
-              document.getElementById('negbar').value = (1-responseData)*100;
-              document.getElementById("sub").disabled = false;
-              document.getElementById("sub").value = 'Analyse';
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-            }
-        })
-  });
+    }
+</script>      
 </script>
 </body>
 </html>
