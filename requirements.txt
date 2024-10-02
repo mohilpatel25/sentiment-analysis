@@ -1,7 +1,7 @@
 jupyter-black==0.4.0
 kaggle==1.6.17
-matplotlib==3.9.2
+pandas==2.2.3
 nltk==3.9.1
-pandas==2.2.2
-scikit-learn==1.5.2 
+scikit-learn==1.5.2
+streamlit==1.38.0
 tensorflow==2.16.1
